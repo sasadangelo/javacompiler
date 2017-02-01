@@ -1,0 +1,19 @@
+Quesiti per i tecnici della Sun Microsystem.
+
+1) Non riesco per ora a trovare un sistema per l'ordinamento del .class, anche
+   perche' non conosco nemmeno il criterio di ordinamento;
+
+2) Quando bisogna utilizzare le istruzioni JVM: nop, wide e swap;
+
+3) A cosa servono gli opcode reserved breakpoint, impdep1 e impdep2?
+
+6) Perche' il not logico non ha un'espressione JVM ma viene generato come
+   modifica del parse-tree?
+
+7) Tranne che per <init> quando si utilizza INVOKESPECIAL?
+
+8) Dalle specifiche della macchina virtuale Constant_Value_Attribute e' uti-
+   lizzato solo quando il campo e' static (implicitamente o esplicitamente), e
+   il testo dice che non e' richiesto che sia final. Sperimentalmente, pero',
+   mi sono reso conto che l'attributo e' utilizzato quando il campo e' static e
+   final. Come si spiega questa ambiguita' di vedute?

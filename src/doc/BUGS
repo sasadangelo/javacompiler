@@ -1,0 +1,77 @@
+Java Compiler versione del 07/11/97.
+
+Lista dei bugs noti del Compilatore Java.
+
+- Il metodo IsConstExpr che controlla se un'espressione e' costante, non
+  e' scritta al meglio. Da essa dipendono altri metodi tr cui 
+  CompileUnit::IsVariable;
+
+- Questo piu' che bug e' un errore concettuale di programmazione. Infatti
+  secondo le specifiche di Java un tipo primitivo e': un tipo numerico o
+  boolean; a sua volta un tipo numerico e': byte, short, char, int, long,
+  float e double. Noi nel nostro progetto abbiamo chiamato il tipo numerico
+  primitive type;
+
+- Volendo e' possibile ottimizzare l'if generando direttamente s1 o s2 se
+  a tempo di compilazione si riesce a prevedere se <expr> e' true o false.
+
+- Mi sono reso conto che se un'istruzione di loop (for, while e do) hanno
+  corpo nullo, viene inviato un messaggio di errore.
+
+- Se scrivo una cosa del genere
+
+	class dino
+	{
+	  void f() 
+	  {
+	    zzzzz p;
+	  }
+	}
+	
+  con zzzzz classe non definita, l'errore non viene inviato, perche' viene 
+  costruito solo il descrittore.
+
+- Sara' possibile inserire variabili costanti come etichette di uno switch,
+  solo nel momento in cui il constant-folding funzionera' alla perfezione.
+
+- alcuni messaggi di errori vengono inviati con "...", cio' e' stato fatto di
+  proposito, comunque tale difetto verra' eliminato al piu' presto.
+
+- Nel definire array di tipo link (es. [Ljava/lang/String) nel file java.y
+  se la classe non verra' mai definita penso che possa comportare dei problemi.
+
+- Se da un metodo statico faccio riferimento a un campo o metodo non statico
+  devo inviare un messaggio di errore.
+
+- Se in uno switch non uso default, allora nella stampa del codice, bisogna 
+  evitare di visualizzarlo.
+
+- Il parser deve fornire un messaggio di errore se il tipo di ritorno e' non 
+  void e non viene eseguito alcun return.
+
+- Va calcolato correttamente Max_Stack in Code_Attribute per ogni metodo.
+  Ricordo che Max Stack e' la taglia max dell'operand stack, attualmente fissa-
+  ta a 4.
+
+- Se definisco una classe public, questa deve essere definita in un file 
+  sorgente con lo stesso nome. Fare in modo che il parser segnali quest'errore.
+
+- Nella gestione delle assegnazioni va migliorata soprattuto se a sinistra
+  dell'assegnazione compare un accesso ad array statico.
+
+- In GenMethodCall ho annullato alcuna istruzioni perche' fino ad ora ho capito
+  che INVOKESPECIAL va usato per i costruttori, anche se le specifiche dicono
+  che valogono con metodi privati e metodi di superclassi.
+
+- Calcolare Max_Stack.
+
+- Quando inizializzo un campo con il suo valore di default e' inutile specifi-
+  carlo nei vari  costruttori o mediante l'uso di Constant_Value_Attribute.
+  I valori di default, sono:
+
+	0      per    short, byte, char, int, long, double, float;
+	null   per    reference type;
+
+- A volte capita che decompilando i file .class con jcc -c <nomefile>, le
+  istruzioni di salto hanno indirizzi con valori altissimi. Questo problema e'
+  dovuto a conversioni non controllate tra tipi numerici signed e unsigned.

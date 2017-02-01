@@ -1,0 +1,123 @@
+Questo documento, e' una raccolta di informazioni circa i limiti del compilato-
+re Java - versione 07/11/97.
+
+- Unicode non supportato.
+
+- Stringhe utf8 non supportate.
+
+- NaN e Infinity non supportate.
+
+- Le librerie Java non sono compattate in un file .zip ( o jar in futuro).
+
+- Non gestiamo i metodi nativi.
+
+- Il codice generato dal presente compilatore, non gestisce gli attributi di
+  Code Attribute, che sono: LineNumberTable Attribute e LocalVariableTable
+  Attribute.
+
+- Lavoriamo con l'ipotesi di non compilare mai il sorgente di java/lang/Object,
+  quindi ogni classe compilata, e' sempre dotata di superclasse. Si tenga
+  conto che le modifiche da apportare al codice per supportare questa
+  feature e' irrisoria.
+
+- Il compilatore Java originale lavora con piu' classpath, noi per semplicita'
+  lavoriamo con un classpath singolo.
+
+- Assumiamo che java/lang/Object sia sempre disponibile. Questa piu' che una
+  limitazione e' una comodita', infatti le modifiche da apportare nel caso
+  in cui si voglia gestire l'assenza di java/lang/Object e' minima.
+
+- Non supportiamo campi transient e volatile, perche' anche Java 1.0 della
+  Sun non li supporta.
+
+- La constant pool di un file .class da noi generato non e' ordinato. 
+  Questo non e' un problema, perche' e' solo un'ottimizzazione che i tecnici 
+  Sun fanno per migliorare le compressioni JAR e avere due classi uguali
+  derivanti da sorgenti diversi uguali byte a byte.
+
+- Non abbiamo previsto il controllo che un metodo, al suo interno, abbia
+  un'istruzione return.
+
+- Quando si utilizza l'istruzione Try e si vuole catturare un'errore non di
+  sistema, bisogna assicurarsi che all'interno del Try sia lanciato un throw 
+  con il nome di quella classe, altrimenti ERR_CATCH_NOT_THROWN verra' 
+  lanciato. Gestire questa cosa, non e' difficile bastera', infatti, ogni
+  qualvolta che si attiva l'istruzione throw di controllare se stiamo in
+  un try e, in caso affermativo, memorizzare il nome di quella classe.
+  Io penso che la stessa cosa valga per i metodi.
+
+- Nella gestione dell'istruzione throw io controllo che l'espressione associa-
+  ta sia assegnabile a java.lang.Throwable, se cio' si verifica, controllo
+  che tre condizioni siano vere: a, b, c.
+  Di queste 3 la b) non e' stata gestita.
+  La clausola b) dice che se l'istruzione throw sta all'interno di un try
+  devo controllare che la classe denotata dall'espressione sia assegnabile a
+  una delle classi catturate dall'istruzione try.
+
+- Una forma di analisi non compiuta dal nostro compilatore e' quella degli
+  "unreachable statements", per maggiori dettagli vedi il libro "java Language
+  Specification" a pag. 295.
+
+- In questa versione, probabilmente, non invieremo CHECKCAST nella generazione
+  del codice per testare le conversioni tra tipi reference. Aggiungere questo
+  controllo e' semplice, vedremo se ci sara' il tempo per farlo.
+
+- Nella generazione dell'if, a livello di parser, dovrei ottimizzare i casi
+  in cui le espressioni siano valori booleani (true e false), generando solo le
+  singole istruzioni. Questa modifica non e' affatto complessa, solo che per 
+  non c'e' tempo per effettuarla.
+
+- Idem. per il for.
+
+- Attualmente lo switch puo' essere utilizzato solo se le clausole "case" 
+  hanno valori interi come label.
+
+- A una variabile locale Java Sun riserva uno spazio su stack frame nel momen-
+  to in cui essa e' utilizzata. Questo e' lo stesso comportamento del nostro
+  compilatore. Se pero' noi dichiariamo un campo e al tempo stesso lo inizia-
+  lizziamo e poi non lo usiamo, il codice non viene generato mentre nel nostro
+  compilatore si. Questo e', ovviamente, un problema di eliminazione di 
+  codice morto.
+
+- Nella gestione dell'assign conversion non teniamo conto che un int, long
+  e' assegnabile a short, byte, char a patto che il numero sia rappresentabile
+  senza perdita di dati.
+
+  Questo comporta la segnalazione di un errore se scrivo
+
+	short i=10;
+
+  dove per evitarlo, per ora mettiamo il cast esplicito. La stessa cosa accade
+  per i tipi reali.
+
+- Controllo dei cicli nelle definizioni di superclassi e superinterfacce.
+
+- Nella gestione dell'istruzione try, quando inizio a processare
+  una clausola catch, dovrei conservare l'eccezione catturata nel parametro
+  del metodo, nel caso in cui questi venga poi realmente usato, altrimenti si
+  genera un pop. 
+  Attualmente il nostro compilatore conserva sempre il valore nel parametro.
+
+- Il nostro compilatore non invia mai il messaggio ERR_VAR_NOT_INITIALIZED;
+
+- Data l'espressione e1 ? e2 : e3, se e3 e' byte, char, short e e2 e' int rap-
+  presentabile in uno di questi formati , viene gestita la restrizione di e2.
+  Vale anche il viceversa. Questa situazione non e' stata gestita dal compila-
+  tore.
+
+- Nel gestire l'istruzione try..catch..finally, se catturo una eccezione Er-
+  rore devo assicurarmi che nel corpo del try venga lanciato questo eccezione,
+  altrimenti e' inutile utilizzarla.
+
+- In java quando si fa riferimento a una classe, se questa non viene trovata 
+  nella compilation unit corrente, non e' trovata nel CLASSPATH, ma e' definita
+  in un file .java presente nella stessa directory del file .java che si sta
+  compilando, allora si compila quest'ultimo file e si procede con la compila-
+  zione. Attualmente questa opzione non e' disponibile nel nostro compilatore,
+  anche se, come e' facile intuire, aggiungerla non sara' certo complessa.
+
+- Probabilmente non riusciro' ad implementare le istruzioni di assegnamento 
+  composte.
+
+- In Java esistono alcuni metodi predefiniti per gli array. Attualmente noi
+  non gestiamo l'invocazione a questi metodi.
