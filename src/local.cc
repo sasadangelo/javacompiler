@@ -11,10 +11,11 @@
  */ 
 
 #include <stdio.h>
-#include <../stack.cc>
-#include <iostream.h>
-#include <fstream.h>
 #include <local.h>
+#include <../stack.cc>
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 int max_local=1;    /*
 		     * variabile globale utilizzata per calcolare la taglia max
@@ -99,7 +100,7 @@ void Local_Count::duplicate(Local_Count *old)
 
 ostream& operator <<(ostream& os , Local_Count& lc)
 {
-  os << " count   : " << lc.count   << "  ";
+  os << " count   : " << lc.getcount()   << "  ";
   return os;
 }
 

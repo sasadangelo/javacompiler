@@ -21,6 +21,7 @@
 #include <errors.h>
 #include <cstring.h>
 #include <descriptor.h>
+#include <local.h>
 #include <environment.h>
 #include <tree.h>
 #include <hash.h>

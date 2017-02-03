@@ -11,7 +11,8 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <fstream.h>
+#include <fstream>
+using namespace std;
 
 template<class T> class Stack {
 
@@ -28,7 +29,7 @@ public:
     void Push(T);
     T Pop();
     T Top();
-    friend ostream& operator << (ostream&,Stack<T>&);
+    friend std::ostream& operator << (std::ostream&,Stack<T>&);
 
     T operator[](int i);         // operatore non legale per uno stack.
     void Dup();                  // operatore ad hoc per il compilatore.

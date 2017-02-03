@@ -11,9 +11,10 @@
  */
 
 #include <stdio.h>
-#include <iostream.h>
+#include <iostream>
 #include <globals.h>
 #include <backpatch.h>
+using namespace std;
 
 /*****************************************************************************
  * classe BPNode.                                                            *

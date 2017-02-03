@@ -11,11 +11,11 @@
  */
 
 #include <stdio.h>
-#include <iostream.h>
+#include <iostream>
 #include <string.h>
 #include <globals.h>
 #include <cstring.h>
-
+using namespace std;
 
 /*****************************************************************************
  * classe String                                                             *
@@ -24,8 +24,7 @@
 /*
  * Costruttori di una stringa nulla o derivante da un (char*)
  */
-
-String::String(char *_str)
+String::String(const char *_str)
 {
   length=strlen(_str);
   str=new char [length+1];
@@ -37,7 +36,7 @@ String::String(char *_str)
   str[length]='\0';
 }
 
-String::String(char *s, int num)
+String::String(const char *s, int num)
 {
   length=num;
   str=new char [length+1];
@@ -74,7 +73,7 @@ int String::getlength() { return length; }
  * Converte la stringa in caratteri.
  */
 
-char *String::to_char() { return str; }
+const char *String::to_char() { return str; }
 
 /*
  * String::operator []
@@ -104,7 +103,7 @@ String& String::operator+(String& s1)
   return *s;
 }
 
-String& String::operator+(char * s1)
+String& String::operator+(const char * s1)
 {
   String *s=new String();
   s->length=length+strlen(s1);
@@ -132,7 +131,7 @@ String& String::operator+=(String& s1)
   return *this;
 }
 
-String& String::operator+=(char *s1)
+String& String::operator+=(const char *s1)
 { 
  char *p=str;
  length+=strlen(s1);
@@ -159,7 +158,7 @@ String& String::operator=(String& s1)
   return *this;
 }
 
-String& String::operator=(char *s1)
+String& String::operator=(const char *s1)
 {
   length=strlen(s1);
   delete str;
@@ -177,7 +176,7 @@ String& String::operator=(char *s1)
  */
 
 int String::operator==(String& s1) { return (strcmp(s1.str,str)==0); }  
-int String::operator==(char * s1)  { return (strcmp(s1,str)==0);     }  
+int String::operator==(const char * s1)  { return (strcmp(s1,str)==0);     }  
 
 /*
  * String::operator !=
@@ -187,7 +186,7 @@ int String::operator==(char * s1)  { return (strcmp(s1,str)==0);     }
  */
 
 int String::operator!=(String& s1) { return (strcmp(s1.str,str)!=0); }  
-int String::operator!=(char * s1)  { return (strcmp(s1,str)!=0); }  
+int String::operator!=(const char * s1)  { return (strcmp(s1,str)!=0); }  
 
 /*
  * String::operator <<

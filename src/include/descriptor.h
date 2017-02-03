@@ -35,18 +35,18 @@ class Descriptor : public String {
 
 public:
   Descriptor();
-  Descriptor(char*);
+  Descriptor(const char*);
   Descriptor(String&);
   ~Descriptor();
 
   Descriptor& operator+(String&);
-  Descriptor& operator+(char *);
+  Descriptor& operator+(const char *);
 
   Descriptor& operator+=(String&);
-  Descriptor& operator+=(char *);
+  Descriptor& operator+=(const char *);
 
   Descriptor& operator=(String&);
-  Descriptor& operator=(char *);
+  Descriptor& operator=(const char *);
 
   friend  ostream& operator<<(ostream&, String&);
   Descriptor& cut(int,int);
@@ -64,13 +64,13 @@ public:
   String&     to_singlename();
   String&     to_packagename();
   Descriptor& to_signature();
-  char       *to_typename();
+  const char       *to_typename();
 
   Descriptor& array_comp_type();
   Descriptor& return_type();
 
   void build_link(String&);
-  void build_link(char *);
+  void build_link(const char *);
   void build_array();
   void build_signature();
   void build_method(Descriptor&,Descriptor&);

@@ -342,7 +342,7 @@ public:
   void Parse();
   void GenCode();
 
-  void MsgErrors(int, char *,...);
+  void MsgErrors(int, const char *,...);
 
   int  is_in_package();
   int  mask_access(int, int);

@@ -41,7 +41,7 @@ Descriptor DesStringBuffer;
  */
 
 Descriptor::Descriptor() : String() { }
-Descriptor::Descriptor(char* s) : String (s) { }
+Descriptor::Descriptor(const char* s) : String (s) { }
 Descriptor::Descriptor(String& s) : String (s.to_char()) { }
 
 /*
@@ -65,7 +65,7 @@ Descriptor& Descriptor::operator+(String& s)
   return (Descriptor&)(((String&)(*this))+s);
 } 
 
-Descriptor& Descriptor::operator+(char *c)
+Descriptor& Descriptor::operator+(const char *c)
 {
   return (Descriptor&)(((String&)(*this))+c);
 }
@@ -84,7 +84,7 @@ Descriptor& Descriptor::operator+=(String& s)
   return *this;
 }
 
-Descriptor& Descriptor::operator+=(char *c)
+Descriptor& Descriptor::operator+=(const char *c)
 {
   (((String&)(*this))+=c);
   return *this;
@@ -103,7 +103,7 @@ Descriptor& Descriptor::operator=(String& s)
   return *this;
 }
 
-Descriptor& Descriptor::operator=(char *c)
+Descriptor& Descriptor::operator=(const char *c)
 {
   (((String&)(*this))=c);
   return *this;
@@ -394,7 +394,7 @@ void Descriptor::build_link(String& s)
   str[length]='\0';
 }
 
-void Descriptor::build_link(char *c)
+void Descriptor::build_link(const char *c)
 {
   delete str;
   length=strlen(c)+2;
@@ -480,12 +480,12 @@ void Descriptor::build_method(Descriptor& signature, Descriptor& ret)
  * formato char*.
  */
 
-char *Descriptor::to_typename()
+const char *Descriptor::to_typename()
 { 
   Descriptor des;
   char *str=new char[1];
   char *oldstr=NULL;
-  char *primitivestr;
+  const char *primitivestr;
   char *brackets;
 
   des=*this;
@@ -509,7 +509,7 @@ char *Descriptor::to_typename()
     {
       oldstr=str;
       str=new char[strlen(str)+des.getlength()-2+1];
-      str=strcat(des.cut(2,des.getlength()-1).to_char(),oldstr);
+      str=strcat((char *)(des.cut(2,des.getlength()-1).to_char()),oldstr);
       str[des.getlength()-2+strlen(oldstr)]='\0';
       delete oldstr;
     }

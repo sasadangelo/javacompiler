@@ -1169,7 +1169,7 @@ void CompileUnit::GenPreIncDecExpr(TreeNode *root, Code_Attribute *ca)
   if (Exp0->is_IDNode())
     variable=((IDNode *) Exp0)->GetIden();
 
-  if (Exp0->is_IDNode && variable->is_local() && DesExp0==DES_INT)
+  if (Exp0->is_IDNode() && variable->is_local() && DesExp0==DES_INT)
     {
       if (op==PlusPlusOp)
 	ca->Gen(IINC,variable->getlocalindex(),(char)1);
@@ -1675,7 +1675,7 @@ void CompileUnit::GenPostIncDecExpr(TreeNode *root, Code_Attribute *ca)
   if (Exp0->is_IDNode())
     variable=((IDNode *) Exp0)->GetIden();
 
-  if (Exp0->is_IDNode && variable->is_local() && DesExp0==DES_INT)
+  if (Exp0->is_IDNode() && variable->is_local() && DesExp0==DES_INT)
     {
       int index;
 

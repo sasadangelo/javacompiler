@@ -11,9 +11,11 @@
  * Dicembre 1997, scritto da Salvatore D'Angelo e-mail xc0261@xcom.it
  */
 
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
 #include <errors.h>
+#include <cstring>
+using namespace std;
 
 /*****************************************************************************
  * implementazione classe NodeErrors                                         *

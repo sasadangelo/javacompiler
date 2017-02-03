@@ -12,8 +12,8 @@
 #include <stdlib.h>
 #include <globals.h>
 #include <string.h>
-#include <fstream.h>
-#include <iostream.h>
+#include <fstream>
+#include <iostream>
 #include <cstring.h>
 #include <descriptor.h>
 #include <hash.h>
@@ -22,6 +22,7 @@
 #include <jvm.h>
 #include <compile.h>
 #include <errors.h>
+using namespace std;
 
 FILE *fTrace;		
 FILE *fSTout;
@@ -68,7 +69,7 @@ extern STNode *ArrayLengthNode;
  * Main Program.                                                             *
  *****************************************************************************/
 
-void main(int argc, char * argv[])
+int main(int argc, char * argv[])
 {
   // yydebug=1;
 
@@ -191,4 +192,5 @@ void main(int argc, char * argv[])
    * delete Unit presenta qualche errore sporadico. Per continuare il nostro
    * lavoro, e' stata momentaneamente abolita.
    */
+    return 0;
 }

@@ -18,8 +18,8 @@
  */
 
 #include <netinet/in.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -32,12 +32,14 @@
 #include <cphash.h>
 #include <table.h>
 #include <tree.h>
+#include <local.h>
 #include <compile.h>
 #include <environment.h>
 #include <jvm.h>
 #include <errors.h>
 
 #include <../dyn_table.cc>
+using namespace std;
 
 extern CompileUnit *Unit;
 extern TreeNode *Dummy;
@@ -1063,9 +1065,9 @@ void Code_Attribute::AddException(Exception_Parameter * pp)
   exception_table->DYNinsert(pp);
 }
 
-void Code_Attribute::Write(ostream& os) { os << *this; }
+void Code_Attribute::Write(std::ostream& os) { os << *this; }
 
-void Code_Attribute::Info(ostream& os,Constant_Pool *cp)
+void Code_Attribute::Info(std::ostream& os,Constant_Pool *cp)
 {
   _u1 lab;
   os << endl;
@@ -1091,14 +1093,14 @@ void Code_Attribute::Info(ostream& os,Constant_Pool *cp)
   os << endl;
 }
 
-ostream& operator << (ostream& os,Code_Attribute& ca)
+std::ostream& operator << (std::ostream& os,Code_Attribute& ca)
 {
   os << *(Entry_Attribute*)&ca;
   Shotu2(os,ca.max_stack);
   Shotu2(os,ca.max_locals);
   Shotu4(os,ca.code_length);
-  if (ca.code_length > 0)
-    os << *ca.code;
+  //if (ca.code_length > 0)
+    //os << *ca.code;
   Shotu2(os,ca.exception_table_length);
   if (ca.exception_table_length  > 0)
     for (int i=0; i< ca.exception_table_length; i++)

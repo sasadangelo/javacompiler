@@ -25,8 +25,8 @@
 #include <compile.h>
 #include <opcodes.h>
 #include <access.h>
-#include <../stack.cc>
 #include <local.h>
+#include <../stack.cc>
 #include <backpatch.h>
 
 extern TreeNode *Dummy;

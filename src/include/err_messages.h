@@ -1,4 +1,4 @@
-char *msg_errors[]=       
+const char *msg_errors[]=       
   {
     "Comment not terminated at end of input.",
     "String not terminated at end of input.",

@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <globals.h>
 #include <cstring.h>
+#include <local.h>
 #include <environment.h>
 
 /*****************************************************************************

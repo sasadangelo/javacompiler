@@ -20,7 +20,7 @@
 
 extern int yylineno;
 
-char *NameNodeOp[]={"CompUnitOp",
+const char *NameNodeOp[]={"CompUnitOp",
 		    "ClassOp",
 		    "ClassHeaderOp",
 		    "CommaOp",
@@ -202,11 +202,11 @@ int TreeNode::is_UNAMENode()  { return NodeKind==_UNAMENode;  }
  * metodi privati utilizzati per la stampa di un nodo.
  */
 
-void TreeNode::zerocrosses() { for (register i=0; i< 162; i++) crosses[i]=0; }
+void TreeNode::zerocrosses() { for (register int i=0; i< 162; i++) crosses[i]=0; }
 
 void TreeNode::indent(FILE *stream,int x)
 {
-  for (register i=0; i < x; i++)
+  for (register int i=0; i < x; i++)
     fprintf(stream,"%s",crosses[i]? "| " : "  ");
   fprintf(stream,"%s", x ? "+-" : "R-");
   if (x)
@@ -434,7 +434,7 @@ void INUMNode::SetVal(long val)         { valint=val; }
 void INUMNode::PrintNode(FILE *stream, int depth)
 {
   indent(stream,depth);
-  fprintf(stream,"[INUMNode,%d]\n",valint);
+  fprintf(stream,"[INUMNode,%ld]\n",valint);
 }
 
 /*****************************************************************************

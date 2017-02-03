@@ -31,7 +31,7 @@ table.o: table.cc
 	$(CC) $(OPT) -I$(DIR_INCLUDE) table.cc
 
 lex.yy.o: java.lex
-	$(LEX) java.lex 
+	$(LEX) java.lex
 	$(MV)  lex.yy.c lex.yy.cc
 	$(CC)  $(OPT) -I$(DIR_INCLUDE) lex.yy.cc
 
@@ -59,13 +59,13 @@ errors.o: errors.cc
 	$(CC) $(OPT) -I$(DIR_INCLUDE) errors.cc
 
 jvm.o: jvm.cc
-	$(CC) $(OPT) -I$(DIR_INCLUDE) jvm.cc
+	$(CC) $(OPT) -I$(DIR_INCLUDE) -Wnon-template-friend -fpermissive jvm.cc
 
 pcode.o: pcode.cc
 	$(CC) $(OPT) -I$(DIR_INCLUDE) pcode.cc
 
 gen.o: gen.cc
-	$(CC) $(OPT) -I$(DIR_INCLUDE) gen.cc
+	$(CC) $(OPT) -I$(DIR_INCLUDE) -fpermissive gen.cc
 
 genexpr.o: genexpr.cc
 	$(CC) $(OPT) -I$(DIR_INCLUDE) genexpr.cc

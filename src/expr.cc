@@ -17,6 +17,7 @@
 #include <descriptor.h>
 #include <hash.h>
 #include <table.h>
+#include <local.h>
 #include <compile.h>
 #include <tree.h>
 #include <errors.h>
@@ -900,7 +901,7 @@ TreeNode *CompileUnit::ParseRelopInstanceExpr(TreeNode *root)
 
 TreeNode *CompileUnit::ParseRelopExpr(TreeNode *root)
 {
-  char *opstr;
+  const char *opstr;
 
   Descriptor DesExp0;
   Descriptor DesExp1;
@@ -3875,7 +3876,7 @@ TreeNode *CompileUnit::ParseConstExpr(TreeNode *root)
 
 TreeNode *CompileUnit::ParseCompAssignment(TreeNode *root)
 {
-  char *strop;
+  const char *strop;
   int  op=((EXPNode *) root)->GetNodeOp();
 
   switch (op)

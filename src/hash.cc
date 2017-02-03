@@ -239,7 +239,7 @@ Hashtable::~Hashtable()
 
 int Hashtable::Hash(String& key)
 {
-  char *point;
+  const char *point;
   unsigned h,g;
   
   h=0;

@@ -25,6 +25,7 @@
 #include <cphash.h>
 #include <table.h>
 #include <jvm.h>
+#include <local.h>
 #include <compile.h>
 #include <tree.h>
 #include <errors.h>
@@ -38,7 +39,7 @@
 extern int yylineno;
 extern int yychar;
 extern TreeNode *Dummy;
-extern char *msg_errors[];
+extern const char *msg_errors[];
 extern int Nest_lev;
 extern int LastIndex;
 extern String DebugDirectory;
@@ -168,7 +169,7 @@ void CompileUnit::Parse()
 
 #define MSG_ERROR_LENGTH  120
 
-void CompileUnit::MsgErrors(int line, char *fmt, ...)
+void CompileUnit::MsgErrors(int line, const char *fmt, ...)
 {
   va_list args;
   va_start(args,fmt);
@@ -341,7 +342,7 @@ int CompileUnit::is_Cast_Conversion(Descriptor& dest, Descriptor& source)
 			     {4,0,0,10}
 			   };
   
-  char *value[]={ DES_BYTE  ,
+  const char *value[]={ DES_BYTE  ,
 		  DES_SHORT ,
 		  DES_INT   ,
 		  DES_LONG  ,
@@ -601,7 +602,7 @@ int CompileUnit::is_Method_Conversion(Descriptor& dest, Descriptor& source)
 			     {0,0,0,7}
 			   };
   
-  char *value[]={ DES_BYTE  ,
+  const char *value[]={ DES_BYTE  ,
 		  DES_SHORT ,
 		  DES_INT   ,
 		  DES_LONG  ,

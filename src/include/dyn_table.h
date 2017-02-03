@@ -13,7 +13,8 @@
 #define DYN_TABLE_H
 
 #include <stdio.h>
-#include <fstream.h>
+#include <fstream>
+using namespace std;
 
 template<class T> class DYNTable {
 

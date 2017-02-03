@@ -9,6 +9,10 @@
  *
  * Maggio 1997, scritto da Michele Risi, e-mail micris@zoo.diaedu.unisa.it.
  */
+#ifndef LOCAL_H
+#define LOCAL_H
+
+#include <ostream>
 
 class Local_Count
 {
@@ -24,9 +28,9 @@ public:
   int inc(int);
   int dec(int);
 
-  friend ostream& operator <<(ostream&,Local_Count&);
+  friend std::ostream& operator <<(std::ostream&,Local_Count&);
   void duplicate(Local_Count *);
 };
 
-
+#endif
 

@@ -15,7 +15,8 @@
 #ifndef CSTRING_H
 #define CSTRING_H
 
-#include <iostream.h>
+#include <iostream>
+using namespace std;
 
 class String {
 
@@ -24,31 +25,31 @@ protected:
   int length;
 
 public:
-  String(char *);
-  String(char *,int);
+  String(const char *);
+  String(const char *,int);
   String();
   ~String();
 
   int     getlength();
-  char*   to_char();
+  const char*   to_char();
   String& cut(int,int);
 
   char    operator[](int);
 
   String& operator+(String&);
-  String& operator+(char *);
+  String& operator+(const char *);
 
   String& operator+=(String& );
-  String& operator+=(char *);
+  String& operator+=(const char *);
 
   String& operator=(String& );
-  String& operator=(char *);
+  String& operator=(const char *);
 
   int     operator==(String& );
-  int     operator==(char *);
+  int     operator==(const char *);
 
   int     operator!=(String& );
-  int     operator!=(char *);
+  int     operator!=(const char *);
 
   friend  ostream& operator<<(ostream&, String&);
 

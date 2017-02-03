@@ -28,7 +28,7 @@
 
 extern FILE *fTrace;
 
-int yylineno=1;
+//int yylineno=1;
 
 extern CompileUnit *Unit;
 extern char *msg_errors[];
@@ -349,7 +349,7 @@ StringChar    ([^\"\\\r\n]|([\b\t\n\f\r\"\'\\]{OctalEscape}))
 %%
 
 typedef struct {
-    char *lexeme; 
+    const char *lexeme; 
     int  token;
 } TKWord;
 
@@ -420,9 +420,11 @@ TKWord    Keytab[]={{"abstract",    ABSTRACT},
  * un identificatore e' una keyword.
  */
 
-static int cmp(TKWord *a, TKWord *b)
+static int cmp(const void *a, const void *b)
 {
-    return strcmp(a->lexeme,b->lexeme);
+    const TKWord *_a=(TKWord *)a;
+    const TKWord *_b=(TKWord *)b;
+    return strcmp(_a->lexeme,_b->lexeme);
 }
 
 

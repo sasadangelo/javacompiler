@@ -13,7 +13,8 @@
 
 #include <stdio.h>
 #include <dyn_table.h>
-#include <fstream.h>
+#include <fstream>
+using namespace std;
 
 template<class T>
 ostream& operator << (ostream& os,DYNTable<T>& dyn)
@@ -76,8 +77,8 @@ template<class T>
 void DYNTable<T>::DYNdelete() 
   {
   T *t;
-  if (num_elemet!=0) {
-    if (num_element==1) {
+  if (dnum_element!=0) {
+    if (dnum_element==1) {
       delete dtable;
       dsize=0;
   }

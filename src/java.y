@@ -20,12 +20,14 @@
 #include <descriptor.h>
 #include <hash.h>
 #include <table.h>
+#include <local.h>
 #include <compile.h>
 #include <errors.h>
 #include <access.h>
 #include <tree.h>
 #include <environment.h>
 #include <lex.h>
+#include <string.h>
 
 void yyerror(char *, ...) { } 
 int  yylex();
@@ -146,7 +148,7 @@ extern Descriptor DesFloat;
  * Operatori
  */
 
-%right EQUAL <valint> ASSIGNOP
+%right <valint> EQUAL ASSIGNOP
 %right '?' ':'
 %left  OROR
 %left  ANDAND
@@ -157,7 +159,8 @@ extern Descriptor DesFloat;
 %left  <valint> RELOP
 %left  <valint> SHIFTOP
 %left  '+' '-'
-%left  '*' <valint> DIVOP
+%left  '*' 
+%left  <valint> DIVOP
 %right <valint> INCOP UNOP
 
 /* 
