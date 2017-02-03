@@ -7,10 +7,10 @@ In 2017 I found this code on an old floppy disk in a drawer of my old desk. To a
 # Update 2/3/2017
 
 After few hours of work I was able to get it compile again, but lot of warnings appears during compilation. The compiler run properly if you use commands like:
-./jcc
-./jcc -h
-./jcc -c <class file>
-./jcc -p <class file>
+    ./jcc
+    ./jcc -h
+    ./jcc -c <class file>
+    ./jcc -p <class file>
 
 but it dump giving a .java in input. I hope that with few hours of additional work I will be it running again.
 
