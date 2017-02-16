@@ -15,4 +15,6 @@ After few hours of work I was able to get it compile again, but lot of warnings 
 
 but it dump giving a .java in input. I hope that with few hours of additional work I will be it running again.
 
+# Update 2/16/2017
 
+I solved the dump and now the compiler is able to compile test code in test/ptest (parsing tests) and test/ctest (code generation tests). The problem now is that the generated class file cannot be run by a official JVM (I tried with Oracle JDK 7). This project was tested 20 years ago with JVM 1.0 Specification and in 20 years lot of things changes. I will verify, in future, if it will be possible make the compiled code runnable with an official JDK.
