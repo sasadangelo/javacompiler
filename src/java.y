@@ -569,9 +569,7 @@ OptSuper: /* empty */
 	       *
 	       * Caso in cui si compila java/lang/Object.
 	       */
-
 	      STNode *ObjectNode=Unit->LoadClass(ObjectName,++LastIndex);
-
 	      $$=new EXPNode(ExtendsOp,Dummy,new IDNode(ObjectNode));
   	    }
         | Super

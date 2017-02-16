@@ -206,8 +206,9 @@ void TreeNode::zerocrosses() { for (register int i=0; i< 162; i++) crosses[i]=0;
 
 void TreeNode::indent(FILE *stream,int x)
 {
-  for (register int i=0; i < x; i++)
+  for (register int i=0; i < x; i++) {
     fprintf(stream,"%s",crosses[i]? "| " : "  ");
+  }
   fprintf(stream,"%s", x ? "+-" : "R-");
   if (x)
     crosses[x]=(crosses[x]+1) % 2;
@@ -364,7 +365,7 @@ void EXPNode::PrintNode(FILE *stream, int depth)
  * classe STRINGNode.                                                        *
  *****************************************************************************/
 
-STRINGNode::STRINGNode(char *_str) : TreeNode()
+STRINGNode::STRINGNode(const char *_str) : TreeNode()
 {
   NodeKind=_STRINGNode;
   descriptor=DES_STRING;

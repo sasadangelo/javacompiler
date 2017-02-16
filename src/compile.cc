@@ -128,11 +128,11 @@ void CompileUnit::Parse()
        * Analisi sintattica.
        */
 
-      if (yyparse()!=0)
+      if (yyparse()!=0) {
 	MsgErrors(yylineno,msg_errors[ERR_GENERIC],PARSE_ERROR_MSG);
+       } 
       else
 	{
-
 	  /*
 	   * Analisi parse-tree (analisi semantica) e eventuale generazione di
 	   * codice.

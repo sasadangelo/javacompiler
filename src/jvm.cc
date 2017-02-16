@@ -1466,6 +1466,8 @@ void Class_File::Info(ostream& os)
   os <<"/********************************************************/" <<endl;
   os <<"/* File .class                                          */" <<endl;
   os <<"/********************************************************/" <<endl;
+  //os << "Magic: " << magic << endl;
+  //os << "Version: " << major_version << "." << minor_version << endl;
   os << endl <<" Number of element in the Constant Pool : ";
   os << Getconstantpoolcount() << endl;
   c_pool->Info(os);
@@ -2643,7 +2645,7 @@ int Class_File::Load_Constant_Integer(long valore)
   CPHash *cphash=Unit->GetCPHash();
   Constant_Integer *valint;
 
-  sprintf(str,"%d",valore);
+  sprintf(str,"%ld",valore);
   key=str;
   delete str;
 
@@ -2666,7 +2668,7 @@ int Class_File::Load_Constant_Long(long long valore)
   CPHash *cphash=Unit->GetCPHash();
   Constant_Long *valint;
 
-  sprintf(str,"%d",valore);
+  sprintf(str,"%lld",valore);
   key=str;
   delete str;
 

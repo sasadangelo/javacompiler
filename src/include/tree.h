@@ -244,7 +244,7 @@ private:
   String str;
 public:
 
-  STRINGNode(char *);
+  STRINGNode(const char *);
   STRINGNode(String&);
   ~STRINGNode();
   String& GetString();

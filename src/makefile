@@ -42,7 +42,7 @@ environment.o: environment.cc
 	$(CC) $(OPT) -I$(DIR_INCLUDE) environment.cc
 
 java.tab.o: java.y
-	$(BISON) java.y 
+	$(BISON) --debug java.y 
 	$(MV) java.tab.c java.tab.cc
 	$(CC) $(OPT) -I$(DIR_INCLUDE) java.tab.cc
 
@@ -78,3 +78,12 @@ local.o: local.cc
 
 cphash.o: cphash.cc
 	$(CC) $(OPT) -I$(DIR_INCLUDE) cphash.cc
+
+clean:
+	rm -f *.o
+	rm -f jcc
+	rm -f java.tab.cc
+	rm -f lex.yy.cc
+	rm -f *.class
+	rm -f debug/*
+       

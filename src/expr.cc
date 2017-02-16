@@ -1084,7 +1084,7 @@ TreeNode *CompileUnit::ParseInstanceOfExpr(TreeNode *root)
 
 TreeNode *CompileUnit::ParseShiftExpr(TreeNode *root)
 {
-  char *opstr;
+  const char *opstr;
 
   int  op=((EXPNode *)root)->GetNodeOp();
 
@@ -1310,7 +1310,7 @@ TreeNode *CompileUnit::ParseAddExpr(TreeNode *root)
 
 	if (Exp0->is_STRINGNode() && Exp1->is_INUMNode())
 	  {
-	    sprintf(num2string,"%d",((INUMNode*)Exp1)->GetVal());
+	    sprintf(num2string,"%ld",((INUMNode*)Exp1)->GetVal());
 
 	    ((STRINGNode *)Exp0)->SetString(((STRINGNode*)Exp0)->GetString()+
 					    num2string);
@@ -1321,7 +1321,7 @@ TreeNode *CompileUnit::ParseAddExpr(TreeNode *root)
 	
 	if (Exp1->is_STRINGNode() && Exp0->is_INUMNode())
 	  {
-	    sprintf(num2string,"%d",((INUMNode*)Exp0)->GetVal());
+	    sprintf(num2string,"%ld",((INUMNode*)Exp0)->GetVal());
 	    String *s=new String(num2string);
 
           ((STRINGNode *)Exp1)->SetString(*s+((STRINGNode*)Exp1)->GetString());
@@ -1779,7 +1779,7 @@ TreeNode *CompileUnit::ParseMultExpr(TreeNode *root)
 
 TreeNode *CompileUnit::ParseDivExpr(TreeNode *root)
 {
-  char       *opstr;
+  const char       *opstr;
   int        op=((EXPNode*)root)->GetNodeOp();
 
   TreeNode   *Exp0=root->GetLeftC();
@@ -1942,7 +1942,7 @@ TreeNode *CompileUnit::ParseUnaryExpr(TreeNode *root)
 
 TreeNode *CompileUnit::ParsePreIncDecExpr(TreeNode *root)
 {
-  char *     opstr;
+  const char *     opstr;
   int        op=((EXPNode *)root)->GetNodeOp();
 
   TreeNode   *Exp0=root->GetRightC();
@@ -2453,7 +2453,7 @@ TreeNode *CompileUnit::ParseNameExpr(TreeNode *root)
 
 TreeNode *CompileUnit::ParsePostIncDecExpr(TreeNode *root)
 {
-  char       *opstr;
+  const char       *opstr;
   int        op=((EXPNode *)root)->GetNodeOp();
 
   TreeNode   *Exp0=root->GetLeftC();

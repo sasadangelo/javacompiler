@@ -43,7 +43,7 @@ int  CPHNode::gettag()          { return tag;   }
 
 void CPHNode::PrintNode(FILE *stream)
 {
-  char *tagstr;
+  const char *tagstr;
 
   switch (tag)
     {

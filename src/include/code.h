@@ -13,7 +13,7 @@
 #ifndef CODE_H
 #define CODE_H
 
-char * jvm_name[]={
+const char * jvm_name[]={
 " NOP         ",
 " ACONST_NULL ",
 " ICONST_M1   ",

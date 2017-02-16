@@ -63,7 +63,7 @@ extern Descriptor DesStringBuffer;
 
 extern STNode *ArrayLengthNode;
 
-// extern int yydebug;
+//extern int yydebug;
 
 /*****************************************************************************
  * Main Program.                                                             *
@@ -71,10 +71,10 @@ extern STNode *ArrayLengthNode;
 
 int main(int argc, char * argv[])
 {
-  // yydebug=1;
+  //yydebug=1;
 
 #ifdef linux
-  setenv("CLASSPATH","/home/saldan/javaproj/lib",0);   
+  setenv("CLASSPATH","/home/ibmuser/javacompiler",0);   
 #endif
 
   // argc=3; argv[1]="-c"; argv[2]="HelloWorld";
@@ -83,7 +83,7 @@ int main(int argc, char * argv[])
 
   // argc=2; argv[1]="./test/applet/TumblingDuke/TumbleItem.java";
 
-  DebugDirectory="/home/saldan/javaproj/src/debug";
+  DebugDirectory="/home/ibmuser/javacompiler/src/debug";
 
   init_name="<init>";
   clinit_name="<clinit>";
@@ -137,7 +137,6 @@ int main(int argc, char * argv[])
 		(argv[1][len-4]=='j') &&
 		(argv[1][len-5]=='.')))
 	    {
-	      
 	      Unit=new CompileUnit(argv[1]);
 	      fTrace=fopen("./debug/Trace","w");
 	      fSTout=fopen("./debug/STable","w");
